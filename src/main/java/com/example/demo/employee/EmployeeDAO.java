@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EmployeeDAO extends JpaRepository<EmployeeEntity, Integer> {
 
-    public EmployeeEntity findByEmpName(String empName);
-    public EmployeeEntity findByEmpID(Integer empId);
+    EmployeeEntity findByEmpName(String empName);
+    EmployeeEntity findByEmpID(Integer empId);
 }

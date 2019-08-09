@@ -62,7 +62,6 @@ public class EmployeeController {
 
     @PostMapping("/create")
     public EmployeeEntity create(@Valid @RequestBody EmployeeEntity emp){
-
         return employeeDAO.save(emp);
     }
 

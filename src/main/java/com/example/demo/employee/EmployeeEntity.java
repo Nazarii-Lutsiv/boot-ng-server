@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "tblEmployees")
+@Table(name = "tblEmployees", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "empID")
+})
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,14 +18,17 @@ import java.util.List;
 @EqualsAndHashCode
 public class EmployeeEntity {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "empID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "empID", unique = true, nullable = false)
     private Integer empID;
+
     @Column(name = "empName", nullable = false)
     private String empName;
+
     @Column(name = "empActive")
     private boolean empActive;
-    @Column(name = "emp_dpID")
-    private Integer emp_dpID;
+
+    @ManyToOne
+    private DepartamentEntity departamentEntity;
 
 }
