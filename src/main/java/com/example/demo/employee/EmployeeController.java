@@ -22,8 +22,8 @@ public class EmployeeController {
         return employeeDAO.findAll();
     }
 
-    @GetMapping("/{id}")
-    private EmployeeEntity findOneById(@PathVariable(value = "empId") Integer empId) {
+    @GetMapping("/{empID}")
+    private EmployeeEntity findOneById(@PathVariable(value = "empID") Integer empId) {
         return employeeDAO.findByEmpID(empId);
     }
 
@@ -33,8 +33,8 @@ public class EmployeeController {
         return employeeDAO.findByEmpName(empName);
     }
 
-    @DeleteMapping("/delete/{id}")
-    private ResponseEntity<?> delete(@PathVariable(value = "empId") Integer empId){
+    @DeleteMapping("/delete/{empID}")
+    private ResponseEntity<?> delete(@PathVariable(value = "empID") Integer empId){
         EmployeeEntity empEntity = employeeDAO.findByEmpID(empId);
         if(empEntity == null){
             return ResponseEntity.notFound().build();
@@ -43,18 +43,18 @@ public class EmployeeController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/edit/{id}")
-    private ResponseEntity<?> edit(
-            @PathVariable(value = "empId") Integer empId,
+    @PutMapping("/update/{empID}")
+    private ResponseEntity<?> update(
+            @PathVariable(value = "empID") Integer empId,
             @Valid @RequestBody EmployeeEntity empDetails
     ){
-        EmployeeEntity employee = employeeDAO.findByEmpID(empDetails.getEmpID());
+        EmployeeEntity employee = employeeDAO.findByEmpID(empId);
         if(employee == null){
             return ResponseEntity.notFound().build();
         }
         employee.setEmpName(empDetails.getEmpName());
         employee.setEmpActive(empDetails.isEmpActive());
-//        employee.setDepartamentId(empDetails.getDepartamentEntity());
+        employee.setDepartamentEntity(empDetails.getDepartamentEntity());
         EmployeeEntity editEmployee = employeeDAO.save(employee);
 
         return ResponseEntity.ok(editEmployee);

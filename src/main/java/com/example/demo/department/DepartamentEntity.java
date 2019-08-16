@@ -27,7 +27,7 @@ public class DepartamentEntity {
     private String dpName;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "empID")
+    @Column(name = "empID")
     private Set<EmployeeEntity> employeeEntitySet;
 
 
