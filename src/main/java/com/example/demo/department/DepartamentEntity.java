@@ -30,8 +30,6 @@ public class DepartamentEntity {
     @Column(name = "empID")
     private Set<EmployeeEntity> employeeEntitySet;
 
-
-
     public DepartamentEntity(String dpName) {
         this.dpName = dpName;
     }
