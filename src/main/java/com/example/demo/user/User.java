@@ -8,10 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -26,11 +23,15 @@ public class User implements UserDetails {
     private int id;
     private String username;
     private String password;
-//    private CustomRole customRole = CustomRole.ROLE_USER;
+
+    @Enumerated(EnumType.STRING)
+    private CustomRole customRole = CustomRole.ROLE_USER;
 
     @Override
-    public String getUsername() {
-        return username;
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(customRole.name()));
+        return authorities;
     }
 
     private boolean isAccountNonExpired = true;
@@ -61,15 +62,13 @@ public class User implements UserDetails {
         return isEnabled;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    @Override
+    public String getUsername() {
+        return username;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-//        authorities.add(new SimpleGrantedAuthority(customRole.name()));
-        return authorities;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override

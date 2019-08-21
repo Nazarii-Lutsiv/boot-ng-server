@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Collections;
 
-/**
- *
- */
 public class RequestProcessingJWTFilter extends GenericFilterBean {
 
     @Override
