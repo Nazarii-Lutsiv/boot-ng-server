@@ -8,8 +8,7 @@ As a front-end side is a project implemented with Angular framework. You can see
 
 * For storing information used MySQL database by supporting hibernate (ORM platform).
 
-## Future upgrate
+* Providing authentication feature by spring-sequrity (JWT)
 
-Add ability logination on back side by spring security
 
 

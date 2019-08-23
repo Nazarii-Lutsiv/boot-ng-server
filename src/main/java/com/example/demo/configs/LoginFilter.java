@@ -77,8 +77,8 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
 //                .setExpiration(new Date(System.currentTimeMillis() + 200000))
                 .compact();
         //and add it to header
-
         res.addHeader("Authorization", "Bearer " + jwtoken);
+//        System.out.println(res.toString()+ "      "  + jwtoken);
     }
 }
 
